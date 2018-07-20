@@ -9,4 +9,19 @@ eureka:
   client:
     service-url:
       defaultZone: http://peer1:8761/eureka/
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+# @HystrixCommand 判断多长时间请求没有返回，执行fallbackMethod
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
